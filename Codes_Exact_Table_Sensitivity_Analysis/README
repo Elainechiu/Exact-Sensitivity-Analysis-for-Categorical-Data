@@ -1,0 +1,120 @@
+README - Code and Data for "Exact Sensitivity Analysis for Observational Studies of Contingency Tables"
+
+Authors: Elaine K. Chiu, Hyunseung Kang
+
+------------------------------------------------------------
+DESCRIPTION
+------------------------------------------------------------
+
+This repository contains code and data to reproduce the results for the paper: "Exact Sensitivity Analysis for Observational Studies of Contingency Tables".
+
+The scripts include simulations and data analysis.
+
+------------------------------------------------------------
+REQUIREMENTS
+------------------------------------------------------------
+
+- R version 4.4.3 or higher (tested on 4.4.3)
+- Required R packages:
+    - dplyr
+    - Rcpp
+    - multicool
+    - arrangements
+    - ggplot2 
+    - BiasedUrn
+    - reticulate 
+    - dplyr
+    - sensitivitymv
+    
+- Python version 3.13.3 or higher (tested on 3.13.3)
+- Required Python packages: 
+    - numpy
+    - gurobipy
+    - time
+    
+- Gurobi version v12.0.2 or higher (tested on v12.0.2)
+
+- Provided R code file:
+    - sensitivityIxJ.R
+    
+- Provided C code file:
+    - sensitivityIxJ.cpp
+    - SIS_methods.cpp
+    
+
+------------------------------------------------------------
+FOLDER STRUCTURE
+
+------------------------------------------------------------
+
+/Library/
+
+|--------- sensitivityIxJ.cpp
+|           |
+|           |------------ Conduct the exact computation formulas in Section 4: Efficient Computation of the Exact Null Distribution. 
+|                         See Theorem 4 in Section 4 and Appendix C, Lemma 5 and 6.
+|
+|--------- sensitivityIxJ.R
+|           |
+|           |----------- Conduct the sensitivitity analysis wrapping up the functions in sensitivityIxJ.cpp, including the 
+|                        exact and sampling-based method in Section 4, and the normally-approximated method in Section 5. 
+|
+|
+|--------- SIS_methods.cpp
+            |
+            |---------- Develops helper function for the sampling-based sensitivity analysis. See Section 4, and the paper
+                        "Sampling for Conditional Inference on Contingency Tables, Eisinger and Chen, 2017."
+
+/Simulations/
+
+|--------- Kernel_Advantage_Simulation.R
+|            |
+|            |__________ Conducts the speed testing comparing the permutation and kernel expression;
+|                        Also creates convergence plots between three types of sampling-based estimators. 
+|                        See Section 4 and Appendix F.
+|
+|
+|             
+|--------- Corner_Solution_Counter_Example.R
+|            |
+|            |___________ Exhibits examples where the maximizer might not live at the corner given arbitrary 
+|                         sensitivity models. See Section 3 Theorem 1, 2, 3, Appendix B Lemma 1, and Appendix E.
+|
+|
+|
+|
+|
+|---------(Power Analysis example files)
+|           command_generating_summary.txt, submit.txt, params.txt, power_analysis_weighted_four_gen_oracle.R,
+|           power_analysis_weighted_four_gen_binary_outcome_1_2.R, power_analysis_weighted_four_gen_binary_outcome_2_3.R,
+|           power_analysis_weighted_four_gen_Fisher_outcome_1_2.R, power_analysis_weighted_four_gen_Fisher_outcome_2_3.R.
+|            |
+|            |
+|            |-------------- These are example files for the power analysis. The attached files reproduced the power analysis
+|                            comparing the collapsed and non-collapsed tests in the main text, Case I. Our power computation
+|                            uses the CHTC source. submit.txt is an example file, which takes the arguments in params.txt             
+|                            and runs 1000 iterations for each gamma on different machines. command_generating_summary.txt 
+|                            stores example codes to run on the bash to organize the results from each machine together. 
+|                            See Section 7 and Appendix F.
+|  
+|
+|------- size_control.R
+          |
+          |------------ Illustrate the type I error rate control with exact p-value method developed in Section 4 and 
+                        the normally-approximated p value method developed in Section 5. See Section 7 and Appendix F.
+
+
+
+/data_analysis/
+
+|-- education.data.csv. 
+|    |
+|    |-------------------  The education.data.csv is ready for analysis. We provide the data cleaning codes obtaining education.data.csv from ECLSK_98_99_K8_CHILD_v1_0.csv, which can be downloaded from  in the analysis code.
+|
+|-- education_data_analysis.R. 
+     |
+     |-------------------  Sensitivity analysis for the data analysis in the main text. See Section 8.
+
+
+
+

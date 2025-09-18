@@ -1,0 +1,23 @@
+
+rm -f summary.txt  # start fresh
+
+for gamma in 0 0.25 0.5 0.75 1 1.25 1.5 1.75 2 2.15 2.3
+do
+  echo "Gamma=${gamma}" >> summary.txt
+
+  # List each file's line with "how many rejections?"
+  # The -H ensures we see the filename
+  grep -H "how many rejections?" weighted_four_gen_oracle_gamma_${gamma}_seed_*.out >> summary.txt
+
+  # Then, if you also want the sum, do:
+  sum=$(grep "how many rejections?" weighted_four_gen_oracle_gamma_${gamma}_seed_*.out \
+        | awk '{sum += $4} END {print sum}')
+  echo "  => Total rejections for gamma=${gamma}: ${sum}" >> summary.txt
+  echo >> summary.txt
+done
+
+echo "See summary.txt for details."
+
+
+
+
