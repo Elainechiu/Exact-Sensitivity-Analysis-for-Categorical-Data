@@ -1,0 +1,35 @@
+# My HTCondor submit file
+   
+# Specify your executable (single binary or a script that runs several
+#  commands) and arguments to be passed to jobs. 
+#  $(Process) will be a integer number for each job, starting with "0"
+#  and increasing for the relevant number of jobs.
+
+# revise into your own container and makes sure that you have all the R and Cpp codes.
+
+container_image = /home/kchiu4/power_analysis_2025/Elaine_container.sif
+executable = power_analysis_weighted_four_gen_oracle.R
+arguments = $(seed) $(gamma) 100
+   		
+# Specify the name of the log, standard error, and standard output (or "screen output") files. Wherever you see $(Cluster), HTCondor will insert the 
+#  queue number assigned to this set of jobs at the time of submission.
+log   = weighted_four_gen_oracle_gamma_$(gamma)_seed_$(seed).log
+error = weighted_four_gen_oracle_gamma_$(gamma)_seed_$(seed).err
+output= weighted_four_gen_oracle_gamma_$(gamma)_seed_$(seed).out
+   
+# This line *would* be used if there were any other files
+# needed for the executable to use.
+# transfer_input_files = file1,/absolute/pathto/file2,etc
+transfer_input_files = /home/kchiu4/power_analysis_2025/sensitivityIxJ.cpp,/home/kchiu4/power_analysis_2025/sensitivityIxJ.R
+   
+# Tell HTCondor requirements (e.g., operating system) your job needs, 
+# what amount of compute resources each job will need on the computer where it runs.
+request_cpus = 4
+request_memory = 20GB
+request_disk = 10GB
+   
+# Tell HTCondor to run 3 instances of our job:
+queue seed, gamma from params.txt
+
+
+
