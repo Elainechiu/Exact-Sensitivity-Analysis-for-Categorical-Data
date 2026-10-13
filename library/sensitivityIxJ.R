@@ -1110,7 +1110,6 @@ sampling.score.sen.IxJ = function(obs.table, gamma,delta, row = "treatment", mc.
     delta = delta,
     transform.fun = transform.fun
   )
-  # Every candidate estimate was zero; report the p-value as 0 rather than -Inf.
   if (!is.finite(max.prob)) max.prob <- 0
   
   return(list(
@@ -1380,7 +1379,7 @@ sampling.general.sen.IxJ = function(obs.table, gamma, delta, row = "treatment",
     delta = delta,
     transform.fun = stat.fun
   )
-  # Every candidate estimate was zero; report the p-value as 0 rather than -Inf.
+
   if (!is.finite(max.prob)) max.prob <- 0
   
   return(list(
@@ -2420,8 +2419,8 @@ norm.score.sen.IxJ <- function(
       delta         = delta,
       u_allocation        = current_u,
       row                 = row,
-      treatment.scores    = treatment.scores,  # Now passing scores
-      outcome.scores      = outcome.scores,    # Now passing scores
+      treatment.scores    = treatment.scores,  
+      outcome.scores      = outcome.scores,    
       shared_divisor      = shared_divisor
     )
     
@@ -2450,8 +2449,8 @@ norm.score.sen.IxJ <- function(
     delta         = delta,
     u_allocation        = rep(0, J),
     row                 = row,
-    treatment.scores    = treatment.scores,  # Now passing scores
-    outcome.scores      = outcome.scores,    # Now passing scores
+    treatment.scores    = treatment.scores,  
+    outcome.scores      = outcome.scores,    
     shared_divisor      = shared_divisor
   )
   
@@ -2461,7 +2460,7 @@ norm.score.sen.IxJ <- function(
   RCT.prob <- RCT.out$p_value
   T_obs    <- RCT.out$T_obs
   
-  # Every candidate estimate was zero; report the p-value as 0 rather than -Inf.
+  
   if (!is.finite(max.prob)) max.prob <- 0
   
   # Return comprehensive results

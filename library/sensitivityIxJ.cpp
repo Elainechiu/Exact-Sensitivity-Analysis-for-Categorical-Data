@@ -889,7 +889,7 @@ NumericVector zu_moments_two_treatment_log(int n1, int n2, int N, NumericVector 
   double z1u_second = 0.0;
 
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {   
     z1u_first = 0.0;
     z1u_second = 0.0;
     return NumericVector::create(z1u_first, z1u_second);
@@ -990,7 +990,7 @@ NumericVector zu_moments_three_treatment_log(int n1, int n2, int n3, int N, Nume
   double gamma = (gamma1 != 0.0) ? gamma1 : (gamma2 != 0.0 ? gamma2 : 0.0);
 
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {   
     return NumericVector::create(0.0, 0.0, 0.0, 0.0, 0.0);
   }
 
@@ -1118,8 +1118,7 @@ NumericVector zu_moments_four_treatment_log(int n1, int n2, int n3, int n4, int 
   double gamma2 = gamma_delta[1] - gamma_delta[3];
   double gamma3 = gamma_delta[2] - gamma_delta[3];
 
-  // Determine the primary gamma to use for the exponential term
-  // Following the original logic: prioritize gamma1, then gamma2, then gamma3
+  
   double gamma = (gamma1 != 0.0) ? gamma1 : ((gamma2 != 0.0) ? gamma2 : gamma3);
 
   // Initialize cumulants for first and second moments, and product moments
@@ -1142,7 +1141,7 @@ NumericVector zu_moments_four_treatment_log(int n1, int n2, int n3, int n4, int 
   std::vector<double> log_weights;
 
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {  
     return NumericVector::create(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
   }
 
@@ -1337,26 +1336,7 @@ NumericVector zr_moments_two_by_two(int n1, int n2, int m1, int m2, int N, Numer
 
 }
 
-/*
- FUNCTION  zr_moments_two_by_two
- PURPOSE   Exact mean and variance of the free cell N_11 of a 2 x 2 table under the
- generic bias model at u-bar = (u1, u2), from the moments of Q_1:
- E[N_11]   = rho_{1,1} E[Q_1] + rho_{1,0} (N_1. - E[Q_1]),
- Var[N_11] = (w_{1,1} - w_{1,0}) E[Q_1]
- - (w_{1,1}/u-bar + w_{1,0}/(N - u-bar)) E[Q_1^2]
- + N_1. (N - u-bar - N_1. + 2 E[Q_1]) w_{1,0} / (N - u-bar)
- + Var[Q_1] (rho_{1,1} - rho_{1,0})^2,
- with rho_{j,1} = u-bar_j / u-bar, rho_{j,0} = (N_.j - u-bar_j) / (N - u-bar)
- (q11, q10 in the code) and w_{j,k} the within-group variances of the
- outcome indicators (w11, w10).  When u-bar is 0 or N the hypergeometric
- moments are returned.
- INPUT     n1, n2 = N_i.;  m1, m2 = N_.j;  N;  gamma_delta (length 2);  u1, u2;
- shared_divisor.
- OUTPUT    c(E[N_11], Var[N_11]).
- EXAMPLE   (R)
- zr_moments_two_by_two(20L, 30L, 15L, 35L, 50L, gamma_delta = c(0, 1), u1 = 0L, u2 = 35L, shared_divisor = 1)
-## with u1 = u2 = 0 (no confounding) the result is c(15*20/50, 20*30*15*35/50^2/49)
- */
+
 
 // [[Rcpp::export]]
 NumericVector zr_moments_two_by_three(int n1, int n2, int m1, int m2, int m3, int N, NumericVector gamma_delta, int u1, int u2, int u3, double shared_divisor) {
@@ -1801,7 +1781,7 @@ NumericVector zr_moments_three_by_three(int n1, int n2, int n3, int m1, int m2, 
   double z2u_second = zu_moments[3];
   double z1u_z2u_product = zu_moments[4];
   double Us = u1 + u2+u3;
-  //if Us = 0 or N, becomes the usual RCT case, have not done
+  //if Us = 0 or N, becomes the usual RCT case
   if(Us==0 || Us==N)
     return(NumericVector::create((double) m1*n1/N,(double)m2*n1/N,(double) m1*n2/N, (double) m2*n2/N,
                                  (double) n1*(N-n1)*m1*(N-m1)/N/N/(N-1),(double) n1*(N-n1)*m2*(N-m2)/N/N/(N-1),(double) n2*(N-n2)*m1*(N-m1)/N/N/(N-1),(double) n2*(N-n2)*m2*(N-m2)/N/N/(N-1),
@@ -2041,8 +2021,7 @@ NumericVector zr_moments_four_by_two(int n1, int n2, int n3, int n4, int m1, int
 
 
 /*
- * The following functions are kept for designer's numerically checking, will not be implemented
- *
+ * The following functions are kept for designer's numerically checking.
  *
  *
  *
@@ -2084,7 +2063,7 @@ NumericVector zu_moments_two_treatment(int n1, int n2, int N, NumericVector gamm
   double convolution_sum = 0.0;
 
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {   
     z1u_first = 0.0;
     z1u_second = 0.0;
     return NumericVector::create(z1u_first, z1u_second);
@@ -2148,7 +2127,7 @@ NumericVector zu_moments_three_treatment(int n1, int n2, int n3, int N, NumericV
   double convolution_sum = 0.0;
 
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {   
     return NumericVector::create(0.0, 0.0, 0.0, 0.0, 0.0);
   }
 
@@ -2229,7 +2208,7 @@ NumericVector zu_moments_four_treatment(int n1, int n2, int n3, int n4, int N, N
 
   double convolution_sum = 0.0;
   // Sanity check
-  if (Us == 0) {   // u-bar = 0: Q_i = 0 surely.  (gamma = 0 is NOT a shortcut: the sums below then give the hypergeometric moments of Q_i.)
+  if (Us == 0) {   
     return NumericVector::create(0.0, 0.0, 0.0, 0.0, 0.0,0.0,0.0,0.0,0.0);
   }
 
