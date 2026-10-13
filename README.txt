@@ -218,6 +218,12 @@ FOLDER STRUCTURE
         Runs the previous engine (/legacy/) and the current engine on the
         tables that appear in the paper and checks that the reference sets
         and p-values agree; prints timings of both engines.
+    
+    sensitivityIxJ_cpp_check.R
+        Unit tests of the C++ building blocks in library/sensitivityIxJ.cpp.
+
+    sensitivityIxJ_R_check.R
+        Unit tests of the R interface in library/sensitivityIxJ.R.
 
 /legacy/
     sensitivityIxJ_orig.R, sensitivityIxJ_orig.cpp
