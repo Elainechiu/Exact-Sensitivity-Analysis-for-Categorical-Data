@@ -121,8 +121,8 @@ check("lse: small values",
 # Purpose:  -Inf acts as log 0, so adding it leaves the other term unchanged
 # Input:    (-Inf, log 7), (log 7, -Inf), (-Inf, -Inf)
 # Expected: log(7), log(7), -Inf
-# This definition is for simplicity that if there is any impossible
-# combination it contributes zero probability mass 
+# 
+# 
 check("lse: -Inf is the identity",
       near(lse_test_(-Inf, log(7)), log(7)) &&
         near(lse_test_(log(7), -Inf), log(7)) &&
@@ -440,10 +440,10 @@ check("log_c_0: large margins",
 # =============================================================================
 # point_prob_bd(tab, delta, u, gamma): probability of one table t under the
 #                                      sensitivity model at a binary u.
-# In this section we mainly apply our understanding for hypergeometric
-# to check the correctness. First, when either gamma = 0 or all u entries are 
-# 1 or 0, then the probability mass collapse to the one from either multivariate
-# hypergeometric or hypergeometric case
+# 
+# 
+# 
+# 
 # =============================================================================
 
 # Multivariate hypergeometric probability of drawing counts x from an urn with
@@ -472,8 +472,8 @@ check("point_prob_bd: 2 x 2 at gamma = 0 matches dhyper",
         near(point_prob_bd(tab_2, c(0, 1), c(2, 3), 0), dhyper(3, 4, 6, 5)))
 
 # Purpose:  when every subject has the same u, gamma has no effect
-#           so the probability mass collapse to the one from 
-#           hypergeometric again
+#           
+#          
 # Input:    tab_2, delta = (0, 1), gamma = 2, u = (0, 0) and u = (4, 6)
 # Expected: dhyper(3, 4, 6, 5)
 check("point_prob_bd: constant u matches dhyper for any gamma",
@@ -490,7 +490,7 @@ check("point_prob_bd: 3 x 3 at gamma = 0 matches multivariate hypergeometric",
 # Purpose:  with u_s = 1 exactly for the subjects with outcome 2, a 2 x 2
 #           table follows Fisher's noncentral hypergeometric distribution
 #           with odds ratio exp(gamma)
-#           This is based on our Corollary to Theorem 3
+#           
 # Input:    tab_2, u = (0, 6), gamma = 1.2, delta = (0, 1) and (1, 0)
 # Expected: dFNCHypergeo(t_22, 6, 4, 5, exp(1.2)) and
 #           dFNCHypergeo(t_12, 6, 4, 5, exp(1.2))
@@ -587,7 +587,7 @@ check("alpha_bd: gamma = 0 gives the same value for every u",
 
 # Purpose:  with u_s = 1 exactly for the subjects with outcome 2, the p-value
 #           follows Fisher's noncentral hypergeometric distribution
-#           Please see the Corollary to Theorem 3 
+#           
 # Input:    tab_2, T = t_11, threshold 3, delta = (0, 1), u = (0, 6), gamma = 1.2
 # Expected: P(t_22 >= 4) = sum of dFNCHypergeo(x, 6, 4, 5, exp(1.2)) for x = 4, 5
 check("alpha_bd: matches Fisher's noncentral hypergeometric",
@@ -800,7 +800,7 @@ check("build_W_from_tables: matches build_W_cpp",
 
 # =============================================================================
 # Factorial(nValue): n! by direct multiplication, used by choose_C.
-# We note that though choose_C is only used for legacy library
+# 
 # =============================================================================
 
 # Purpose:  small values match hand calculation
