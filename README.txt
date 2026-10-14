@@ -45,7 +45,7 @@ REQUIREMENTS
                        enumerates treatment permutations for the
                        permutation-based comparison)
     - BiasedUrn       (size_control.R: samples the multivariate extended
-                       hypergeometric distribution)
+                       hypergeometric distribution and sensitivityIxJ_cpp_check.R)
     - arrangements    (Corner_Solution_Counter_Example.R)
     - sensitivitymv   (education_data_analysis.R: truncated product for the
                        joint p-value)
