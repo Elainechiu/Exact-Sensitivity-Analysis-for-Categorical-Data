@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# command_generating_summary.txt (a bash script)
+#
+# Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
+# of Contingency Tables"
+# Authors: Elaine K. Chiu and Hyunseung Kang
+#
+# Sums the rejection counts printed by the HTCondor jobs of one test into
+# power_simulation/summary_<test>.txt. Power at a given gamma is the total
+# divided by the number of replications at that gamma (number of seeds x
+# replications per job, i.e. 10 x 100 = 1,000 with the shipped params.txt and
+# submit.txt).
+#
+# Run from the top-level folder (the one with README.txt), after all jobs
+# have finished:
+#   bash power_simulation/command_generating_summary.txt oracle
+# where the argument is the value of `test` used in submit.txt (oracle,
+# binary_outcome_1_2, binary_outcome_2_3, Fisher_outcome_1_2, Fisher_outcome_2_3).
+set -euo pipefail
+TEST="${1:-oracle}"
+DIR="power_simulation"
+OUT="${DIR}/summary_${TEST}.txt"
+rm -f "${OUT}"
+
+# the distinct gamma values, taken from the second column of params.txt
+for gamma in $(awk -F'[ ,]+' 'NF>=2 {print $2}' "${DIR}/params.txt" | sort -u); do
+  files=( "${DIR}"/logs/"${TEST}"_gamma_"${gamma}"_seed_*.out )
+  echo "Gamma=${gamma}" >> "${OUT}"
+  grep -H "how many rejections?" "${files[@]}" >> "${OUT}"
+  sum=$(grep -h "how many rejections?" "${files[@]}" | awk '{s += $4} END {print s}')
+  echo "  => Total rejections for gamma=${gamma}: ${sum}" >> "${OUT}"
+  echo >> "${OUT}"
+done
+echo "See ${OUT}."
