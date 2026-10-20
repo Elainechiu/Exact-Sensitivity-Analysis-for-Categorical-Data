@@ -49,7 +49,7 @@ REQUIREMENTS
     - sensitivitymv   (education_data_analysis.R: truncated product for the
                        joint p-value)
     - dplyr           (education_data_analysis.R)
-    - ggplot2, gridExtra, patchwork
+    - ggplot2, patchwork
                       (Kernel_Advantage_Simulation.R, size_control.R: figures)
 - Optional, only for re-deriving the profile-likelihood scores in
   education_data_analysis.R:
@@ -281,14 +281,20 @@ HOW TO REPRODUCE THE RESULTS
    library/SIS_methods.cpp; Corner_Solution_Counter_Example.R is
    self-contained.) Scripts are run by giving their path relative to the
    top-level folder, e.g.
-       source("power_simulation/size_control.R")
+       source("power_simulation/size_control.R").
+  Running times below are wall-clock times on Posit Cloud 
+  with 4 CPUs and 8 GB RAM, R 4.6.1; they depend on the CPU and RAM available 
+  and are given as a guide only.
 
 2. To reproduce the computational comparison of the kernel representation
    and the sampling-based estimators, run
        source("power_simulation/Kernel_Advantage_Simulation.R")
    or step through the script from the top. The script is sequential: the
    helper functions defined at the beginning of each part are used by every
-   experiment below them.
+   experiment below them. 
+   The permutation-based comparison in Part 1 enumerates up to 17 million 
+   treatment assignments per table and takes several minutes per table; 
+   run the whole script in the background. Figures are saved to power_simulation/.
 
 3. To reproduce the power results. Each power_analysis_*.R script takes
    (seed, gamma, replications) as arguments and prints, as its last line,
@@ -307,6 +313,10 @@ HOW TO REPRODUCE THE RESULTS
          all jobs have finished,
              bash power_simulation/command_generating_summary.txt oracle
          writes power_simulation/summary_oracle.txt; power = total / 1,000.
+         We do not report a running time for the cluster workflow: 
+         the jobs are distributed over whatever machines are available, 
+         so the time to completion depends on the cluster.
+         
      (b) Without HTCondor, keep the folder structure and run each cell in a
          terminal from the top-level folder (about one to two minutes per
          cell). The command below reproduces one cell of Table 3 of the
@@ -342,30 +352,34 @@ HOW TO REPRODUCE THE RESULTS
    packages listed under REQUIREMENTS. To start from the raw ECLS-K file
    instead, uncomment the extraction lines at the beginning of the script
    after downloading ECLSK_98_99_K8_CHILD_v1_0.csv as described under DATA
-   AVAILABILITY.
+   AVAILABILITY. This script runs in seconds.
 
 5. To reproduce the size-control results, run
        source("power_simulation/size_control.R")
    The experiments draw tables with BiasedUrn::rMFNCHypergeo and set their
-   seed internally.
+   seed internally. Each exact-versus-normal setting takes a few minutes 
+   and the whole script about an hour; the four figures are saved to power_simulation/.
 
 6. To reproduce the counterexample, run
-       source("power_simulation/Corner_Solution_Counter_Example.R")
-   The results are printed to the console.
+   source("power_simulation/Corner_Solution_Counter_Example.R")
+   The results are printed to the console. This script runs in seconds.
 
 7. To run the feasibility benchmarks, run each script in /feasibility/, e.g.
-       source("feasibility/ordinal_feasibility_3x3.R")
-       source("feasibility/general_test_feasibility_3x3.R")
-   The ordinal runs complete in seconds to minutes; the chi-square runs for
-   larger N take hours and should be launched as a background job, e.g.
-       Rscript feasibility/general_test_feasibility_3x3.R
+   source("feasibility/ordinal_feasibility_3x3.R")
+   source("feasibility/general_test_feasibility_3x3.R")
+   Running times for each (IxJ, N) cell are reported in Section G of 
+   the Supplementary Material. Over the full N grid, the ordinal scripts 
+   complete in seconds (3x3, 4x2, 5x2) to about 3 minutes (3x4); the chi-square 
+   scripts complete in seconds for 4x2 and 5x2, in about 4 hours for 3x3, 
+   and in about 18 hours for 3x4 (N<=120). 
    Each script appends to its CSV in /feasibility/ and skips chunks already
    checkpointed, so an interrupted run can be restarted.
 
 8. To verify the code, run the scripts in /development_check/, e.g.
       source("development_check/sensitivityIxJ_cpp_check.R")
    All checks should report PASS. verify_same_names.R also loads the
-   previous engine from legacy/.
+   previous engine from legacy/. The checks run in seconds, except verify_same_names.R, 
+   which re-enumerates the tables with the previous engine and takes under 10 minutes.
 
 9. Random seeds are fixed within the scripts. The power scripts set the seed
    from the replication index, so the same simulated tables are used across
