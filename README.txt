@@ -1,6 +1,5 @@
 README - Code and Data for "Exact, Nonparametric Sensitivity Analysis for
          Observational Studies of Contingency Tables"
-Authors: Elaine K. Chiu and Hyunseung Kang
 
 ------------------------------------------------------------
 DESCRIPTION
