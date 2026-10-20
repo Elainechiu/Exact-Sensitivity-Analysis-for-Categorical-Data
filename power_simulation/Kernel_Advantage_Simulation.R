@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Computational savings of the kernel representation of the exact null
 # distribution (Theorem 4). Two parts:

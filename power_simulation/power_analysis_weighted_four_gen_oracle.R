@@ -4,7 +4,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Power of the 3 x 3 (Opt) test: the ordinal test on the full table whose
 # scores equal the data-generating scores (w*, v*). Tables of size N = 60

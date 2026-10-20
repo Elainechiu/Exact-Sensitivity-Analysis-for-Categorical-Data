@@ -2,7 +2,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Run from the top-level folder (the one with README.txt):
 #   mkdir -p power_simulation/logs

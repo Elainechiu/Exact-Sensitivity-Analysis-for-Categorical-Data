@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Numerical counterexample of Appendix E.1 (see also Lemma 1 in Appendix B.2
 # and its discussion in Appendix E.2). Under the generic bias model, Lemma 1

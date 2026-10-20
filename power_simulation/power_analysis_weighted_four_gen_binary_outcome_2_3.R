@@ -4,7 +4,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Power of the 3 x 2 (V2) test: the ordinal test with the data-generating
 # treatment scores w* after collapsing outcome levels 2 and 3, i.e. outcome

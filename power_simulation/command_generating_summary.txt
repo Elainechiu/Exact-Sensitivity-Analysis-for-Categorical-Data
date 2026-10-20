@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Sums the rejection counts printed by the HTCondor jobs of one test into
 # power_simulation/summary_<test>.txt. Power at a given gamma is the total

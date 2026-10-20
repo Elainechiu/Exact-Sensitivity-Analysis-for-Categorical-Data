@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Size (type I error rate) of the sign-score test on I x 2 tables under the
 # worst-case unmeasured confounder, comparing the exact worst-case p-value

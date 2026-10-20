@@ -4,7 +4,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Power of the 2 x 2 (V2) test: Fisher's exact test after collapsing the 3 x 3
 # table into a 2 x 2 table by merging treatment levels 2 and 3 (the two levels
