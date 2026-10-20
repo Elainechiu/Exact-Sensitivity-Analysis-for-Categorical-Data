@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Running-time and memory benchmark of the exact worst-case p-value for the
 # ordinal test on 4 x 2 tables, N in {20, 50, 100, 120, 150, 180, 200}.
