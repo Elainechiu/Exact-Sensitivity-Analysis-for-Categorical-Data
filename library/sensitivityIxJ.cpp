@@ -4,8 +4,7 @@
  
  Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
  of Contingency Tables"
- Authors: Elaine K. Chiu and Hyunseung Kang
- 
+
  C++ routines of sensitivityIxJ: exact sensitivity analysis for I x J
  contingency tables under the generic bias sensitivity model. The file contains
  

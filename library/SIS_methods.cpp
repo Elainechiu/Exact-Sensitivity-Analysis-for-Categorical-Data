@@ -4,8 +4,7 @@
  
  Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
  of Contingency Tables"
- Authors: Elaine K. Chiu and Hyunseung Kang
- 
+
  Sequential importance sampling of I x J contingency tables with given row
  and column margins, used by the sampling-based methods of
  library/sensitivityIxJ.R (sampling.general.sen.IxJ, sampling.score.sen.IxJ)
