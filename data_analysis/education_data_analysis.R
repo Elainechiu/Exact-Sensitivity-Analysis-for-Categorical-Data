@@ -2,7 +2,6 @@
 #                                                                               #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies #
 # of Contingency Tables"                                                        #
-# Authors: Elaine K. Chiu and Hyunseung Kang                                    #
 #                                                                               #
 # Data cleaning and analysis of the ECLS-K data: the sensitivity analysis of    #
 # the 3x3 ordinal test under prior and profile-likelihood scores, the joint     #
