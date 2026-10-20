@@ -22,8 +22,9 @@
 # 
 ##############################################################################
 
-# Assume the user obtains the "ECLSK_98_99_K8_CHILD_v1_0.csv" downloaded from website, National Center 
-# for Education Statistics, online codebook.
+# Assume the user has downloaded "ECLSK_98_99_K8_CHILD_v1_0.csv" (ECLS-K:1998-99 K-8 public-use
+# child file) from the National Center for Education Statistics online codebook,
+# https://nces.ed.gov/datalab/onlinecodebook, into the top-level folder; see README.txt, DATA AVAILABILITY.
 
 # data.t= read.csv("ECLSK_98_99_K8_CHILD_v1_0.csv")
 # VartoKeep = c("P1PRIMPK","CHILDID","CREGION","GENDER","RACE","C1R4MSCL","WKBLACK",
@@ -31,7 +32,7 @@
 # "C1R4MPF","C1R4RPF","S2HVISIT","S2ORIENT","C7R4RPF","C7R4MPF")
 
 # education.data = data.t[,VartoKeep]
-# write.csv(x=education.data,file="data_analysis/education.data.csv")
+# write.csv(x = education.data, file = "data_analysis/education.data.csv", row.names = FALSE)
 ## Here first check the distributions of variables are as the one from website:
 ## https://nces.ed.gov/datalab/onlinecodebook
 ## Also adds description from the user manual:
