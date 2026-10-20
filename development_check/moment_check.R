@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Checks the exact means, variances and covariances of the cell counts returned
 # by zr_moments_<I>_by_<J> in library/sensitivityIxJ.cpp against the same

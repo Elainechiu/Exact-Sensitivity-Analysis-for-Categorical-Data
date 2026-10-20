@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Checks the engine against results known independently of the paper.
 # Theorem 4 gives the exact null distribution of the table at a binary u,

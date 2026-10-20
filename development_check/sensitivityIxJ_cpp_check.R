@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Unit tests for library/sensitivityIxJ.cpp.
 # This file runs the building-block functions in sensitivityIxJ.cpp to check

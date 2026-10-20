@@ -3,7 +3,6 @@
 #
 # Code for "Exact, Nonparametric Sensitivity Analysis for Observational Studies
 # of Contingency Tables"
-# Authors: Elaine K. Chiu and Hyunseung Kang
 #
 # Runs the previous engine (legacy/sensitivityIxJ_orig.cpp and .R: one
 # numerator per table dimension, enumeration in R) and the current engine
