@@ -101,7 +101,7 @@ for (cs in cases) {
 timings <- do.call(rbind, rows); rownames(timings) <- NULL
 cat("\nTimings (seconds): enumeration and single-u p-value, old vs new engine\n")
 print(timings, row.names = FALSE); cat("\n")
-
+write.csv(timings, "development_check/timings_legacy_vs_current.csv", row.names = FALSE)
 
 # =============================================================================
 # exact.score.sen.IxJ: old vs new on the data-analysis table.
