@@ -3,17 +3,23 @@
  * Observational Studies of Contingency Tables", Section 4, exact method
  * and Section 5, normal approximation method. 
  * 
+ * "THE CODES HERE IS IN LEGACY STATUS, I.E., THE MOST UP TO DATE CODES ARE IN /library
+ * THE MAIN DIFFERENCE BETWEEN THE CODES IN /library and IN /legacy IS THAT THE CODES
+ * IN /legacy IMPLMENTS LEMMA 6--8 FOR THE EXACT P-VALUE COMPUTATIONS; WHEREAS THE 
+ * CODES IN /library IMPLEMENTS THEOREM 4 FOR THE EXACT P-VALUE COMPUTATIONS"
+ *
+ * 
  * The helper functions include:
  * 
  * ** denominator_two_treatment, denominator_three_treatment, denominator_four_treatment,
  * ** denominator_five_treatment: these are the functions related to the exact p value 
- * ** denominator part, which is called kernel(q) in Appendix C, Lemma 5.
+ * ** denominator part, which is called kernel(q) in Appendix C.
  * 
  * 
  * 
  * ** d_numerator_two_by_three,....d_numerator_three_by_two
  * ** Several functions are named as d_numerator_I_by_J computes the numerator part 
- * ** of the probability, which is called kernel(t,q) in Appendix C, Lemma 6. 
+ * ** of the probability, which is called kernel(t,q) in Appendix C. 
  * 
  * 
  * 
@@ -29,7 +35,7 @@
  * 
  * ** See the functions "exact.general.sen.IxJ", "exact.score.sen.IxJ" for the exact p value computation
  * ** and the function "norm.score.sen.IxJ" for the normally-approximated p value computation 
- * ** for the sensitivity analysis in the file "sensitivityIxJ.R"
+ * ** for the sensitivity analysis in the file "sensitivityIxJ_orig.R"
  * 
  */
 
@@ -2934,22 +2940,6 @@ NumericVector zr_moments_four_by_two(int n1, int n2, int n3, int n4, int m1, int
 
 
 
-/*
- * The following functions are kept for designer's numerically checking, will not be implemented
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- */
 
 
 

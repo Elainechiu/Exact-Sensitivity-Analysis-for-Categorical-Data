@@ -3,8 +3,15 @@
 # Exact Sensitivity Analysis for Observational Studies of Contingency Tables                               #
 #                                                                                                          #
 # This R file contains the implementation of methods described in the paper:                               #
-# "Exact Sensitivity Analysis for Observational Studies of IxJ Contingency Tables"                         #
-#                                                                                                          #
+# "Exact Sensitivity Analysis for Observational Studies of IxJ Contingency Tables" 
+# 
+# "THE CODES HERE IS IN LEGACY STATUS, I.E., THE MOST UP TO DATE CODES ARE IN /library
+#  THE MAIN DIFFERENCE BETWEEN THE CODES IN /library and IN /legacy IS THAT THE CODES
+# IN /legacy IMPLMENTS LEMMA 6--8 FOR THE EXACT P-VALUE COMPUTATIONS; WHEREAS THE 
+# CODES IN /library IMPLEMENTS THEOREM 4 FOR THE EXACT P-VALUE COMPUTATIONS"
+#
+# 
+#
 # The code provides three complementary approaches for conducting sensitivity                              #
 # analysis in observational studies with multiple treatments and multiple outcomes:                        #
 #                                                                                                          #
@@ -30,7 +37,7 @@
 # Dependencies:                                                                                            #
 # - Rcpp (for C++ integration)                                                                             #
 # - SIS_methods.cpp (for table sampling)                                                                   #
-# - sensitivityIxJ.cpp (for core computations)                                                             #
+# - sensitivityIxJ_orig.cpp (for core computations)                                                             #
 #                                                                                                          #
 #                                                                                                          #
 ############################################################################################################
