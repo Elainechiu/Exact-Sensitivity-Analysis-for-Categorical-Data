@@ -23,7 +23,7 @@ approximation based on the exact moments of the cell counts. The
 /data_analysis/ folder contains the analysis of the Early Childhood
 Longitudinal Study, Kindergarten Class of 1998-99 (ECLS-K). The
 /power_simulation/ folder contains the power and size simulations, the study
-of the computational savings of the kernel representation, and a
+of the computational savings of our algorithms, and a
 counterexample showing that, under a more general sensitivity model, the
 maximizer of the p-value need not be a binary vector. The /feasibility/
 folder contains the running-time and memory benchmarks of the exact
@@ -38,9 +38,9 @@ REQUIREMENTS
 - A C++ compiler for Rcpp. The .cpp files are compiled at run time by
   Rcpp::sourceCpp; no package installation is needed.
 - Required R packages:
-       - Rcpp 1.1.2            (all scripts; compiles sensitivityIxJ.cpp and
+    - Rcpp 1.1.2            (all scripts; compiles sensitivityIxJ.cpp and
                              SIS_methods.cpp)
-    - multicool 1.0.1       (Kernel_Advantage_Simulation.R, size_control.R:
+    - multicool 1.0.1       (Efficient_Advantage_Simulation.R, size_control.R:
                              enumerates treatment permutations for the
                              permutation-based comparison)
     - BiasedUrn 2.0.12      (size_control.R, sensitivityIxJ_cpp_check.R:
@@ -51,7 +51,7 @@ REQUIREMENTS
                              for the joint p-value)
     - dplyr 1.2.1           (education_data_analysis.R)
     - ggplot2 4.0.3, patchwork 1.3.2
-                            (Kernel_Advantage_Simulation.R, size_control.R:
+                            (Efficient_Advantage_Simulation.R, size_control.R:
                              figures)
   Versions are those used for the reported results (R 4.6.1); later
   versions are expected to work.
@@ -100,7 +100,7 @@ FOLDER STRUCTURE
 
     sensitivityIxJ.cpp
         The computational engine, compiled by Rcpp::sourceCpp. Implements the
-        kernel representation of the exact null distribution (point_prob_bd,
+        efficient representation of the exact null distribution (point_prob_bd,
         build_W_cpp, alpha_bd) and the exact moments of the cell counts
         (zr_moments_*, zu_moments_*). Exact computation works for any I x J
         table; the moment routines cover 2x2 to 2x5, 3x2, 3x3, and 4x2
@@ -111,7 +111,7 @@ FOLDER STRUCTURE
         Chen, Diaconis, Holmes and Liu (2005) and Eisinger and Chen (2017),
         used as the proposal distribution by sampling.score.sen.IxJ and
         sampling.general.sen.IxJ and by the sampling comparison in
-        Kernel_Advantage_Simulation.R.
+        Efficient_Advantage_Simulation.R.
 
 /data_analysis/
     education_data_analysis.R
@@ -164,21 +164,16 @@ FOLDER STRUCTURE
         the empirical size of the exact worst-case p-value with that of the
         normal approximation.
 
-    Kernel_Advantage_Simulation.R
-        Part 1: the computational savings of the kernel representation of
+    Efficient_Advantage_Simulation.R
+        Part 1: the computational savings of the efficient representation of
         the exact null distribution (Table 1 of the main text and Table F.1
-        of the Supplementary Material). Part 2: the comparison of the
+        of the Supplementary Material) based on Theorem 4. Part 2: the comparison of the
         sampling-based estimators (the four figures of Section F.2). Results
         are appended to power_simulation/output.txt; the figures are saved
         as power_simulation/plot_convergence_experiment_{S1,S2,P1,P2}.png.
 
     output.txt
-        The recorded results of Kernel_Advantage_Simulation.R: eighteen
-        blocks from Part 1 (the sixteen rows of Table F.1, one block
-        labelled "Warm-up (discard)" that is not reported, and the re-run
-        of the first row that is), followed by the four blocks S1, S2, P1,
-        P2 of Part 2 that give the numbers in the captions of Section F.2.
-        Re-running the script appends new blocks to this file.
+        A file that the users will get after running Efficient_Advantage_Simulation.R.
 
     Corner_Solution_Counter_Example.R
         A numerical counterexample for a sensitivity model more general than
@@ -201,9 +196,9 @@ FOLDER STRUCTURE
         checkpointed to .rds files so that an interrupted run can be resumed.
 
     ordinal_test_feasibility.csv, general_test_feasibility.csv
-        Example benchmark results. Running the feasibility scripts appends
-        new rows to these files, so users can examine the computational
-        burden under their own CPU and RAM setting.
+        Two files that the users will get after running the feasibility scripts,
+        running each case appends new rows to these files, so users can examine 
+        the computational burden under their own CPU and RAM setting.
 
 /development_check/
 
@@ -227,8 +222,8 @@ FOLDER STRUCTURE
         reported in Section G.3 of the Supplementary Material.
 
     timings_legacy_vs_current.csv
-        The timings reported in Section G.3; re-running verify_same_names.R
-        overwrites it.
+        The timings reported in Section G.3; this file will appear
+        after the users run verify_same_names.R.
     
     sensitivityIxJ_cpp_check.R
         Unit tests of the C++ building blocks in library/sensitivityIxJ.cpp.
@@ -240,7 +235,8 @@ FOLDER STRUCTURE
     sensitivityIxJ_orig.R, sensitivityIxJ_orig.cpp
         The previous release of the engine (one numerator per table
         dimension, enumeration in R). Kept so that the verification scripts
-        can compare the two engines. Not used by any results script.
+        can compare the two engines. Not used by any results script. 
+        The algorithms are based on Lemma 6--8 in the Supplementary Material.
 
 ------------------------------------------------------------
 DATA AVAILABILITY
@@ -307,18 +303,17 @@ HOW TO REPRODUCE THE RESULTS
   Running times below are wall-clock times on Posit Cloud 
   with 8 CPUs and 4 GB RAM, R 4.6.1; they depend on the CPU and RAM available
 
-2. To reproduce the computational comparison of the kernel representation
+2. To reproduce the computational comparison of the efficient representation
    and the sampling-based estimators, run
-       source("power_simulation/Kernel_Advantage_Simulation.R")
+       source("power_simulation/Efficient_Advantage_Simulation.R")
    or step through the script from the top. The script is sequential: the
    helper functions defined at the beginning of each part are used by every
    experiment below them. 
    Part 1 takes about 17 hours (the permutation approach enumerates up to
-   17 million assignments per run) and is best run as a background job; the
-   recorded output.txt was produced after one untimed warm-up call, so the
-   first timed block is not inflated by compilation. Part 2 takes a few
-   minutes. Results are appended to power_simulation/output.txt and the
-   figures are saved to power_simulation/.
+   17 million assignments per run) and is best run as a background job;
+   Part 2 takes a few minutes. 
+   Results are appended to power_simulation/output.txt and the figures are saved 
+   to power_simulation/.
 
 3. To reproduce the power results. Each power_analysis_*.R script takes
    (seed, gamma, replications) as arguments and prints, as its last line,
