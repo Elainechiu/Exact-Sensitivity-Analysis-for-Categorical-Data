@@ -171,7 +171,7 @@ for (cs in mass_cases) {
 
 # Purpose:  the mean and variance of T = sum_ij w_i v_j N_ij computed by brute
 #           force from P_u(.) over all tables equal mu_T and var_T from
-#           norm_single_u_allocation_p_value (Theorem D.1); the kernel
+#           norm_single_u_allocation_p_value (Theorem D.1); the efficient
 #           counting of Theorem 4 and the moment algebra of Appendix D are two
 #           independent derivations
 # Input:    a 3x3 table, the 3x3 table of Appendix F.2, a 4x2 and a 2x4 table,
