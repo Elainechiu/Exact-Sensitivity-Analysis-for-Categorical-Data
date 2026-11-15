@@ -32,7 +32,7 @@
 # Under the generic bias model, an unmeasured confounder u_s in [0, 1] shifts                              #
 # the treatment assignment probabilities by exp(gamma * delta_i * u_s), where                              #
 # gamma >= 0 measures the strength of the confounding and the binary vector                                #
-# delta marks the treatment levels it favours.                                                             #
+# delta marks the treatment levels it favors.                                                             #
 #                                                                                                          #
 # Dependencies, loaded before this file:                                                                   #
 # - Rcpp                                                                                                   #
@@ -913,7 +913,7 @@ single.u.sampling.general.IxJ = function(table, row = "treatment", mc.iteration 
 #'   table.
 #' @param gamma A nonnegative scalar, the sensitivity parameter.
 #' @param delta A binary, nondecreasing vector marking the treatment levels
-#'   favoured by the confounder. Its length must equal the number of
+#'   favored by the confounder. Its length must equal the number of
 #'   treatment levels (rows of \code{obs.table} if \code{row = "treatment"},
 #'   or columns if \code{row = "outcome"}).
 #' @param row Either \code{"treatment"} or \code{"outcome"}, indicating which
@@ -1136,7 +1136,7 @@ sampling.score.sen.IxJ = function(obs.table, gamma,delta, row = "treatment", mc.
 #' @param obs.table A matrix or table object giving the observed contingency
 #'   table.
 #' @param gamma A nonnegative scalar, the sensitivity parameter.
-#' @param delta A binary vector marking the treatment levels favoured by the
+#' @param delta A binary vector marking the treatment levels favored by the
 #'   confounder. Its length must equal the number of treatment levels (rows
 #'   of \code{obs.table} if \code{row = "treatment"}, or columns if
 #'   \code{row = "outcome"}).
@@ -2183,7 +2183,7 @@ norm_single_u_allocation_p_value <- function(
 #'   table.
 #' @param gamma A nonnegative scalar, the sensitivity parameter.
 #' @param delta A binary, nondecreasing vector marking the treatment levels
-#'   favoured by the confounder. Its length must equal the number of
+#'   favored by the confounder. Its length must equal the number of
 #'   treatment levels (rows of \code{obs.table} if \code{row = "treatment"},
 #'   or columns if \code{row = "outcome"}).
 #' @param row Either \code{"treatment"} or \code{"outcome"}, indicating which

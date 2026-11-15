@@ -2000,11 +2000,6 @@ NumericVector zr_moments_four_by_two(int n1, int n2, int n3, int n4, int m1, int
 
 
 
-/*
- * The following functions are kept for designer's numerically checking.
- */
-
-
 
 
 
